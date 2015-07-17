@@ -3,6 +3,9 @@ deploy.properties
 build.properties
 runtime.properties
 
+#Data directory
+./vivo3tier/*
+
 #Build dir
 .build/
 
