@@ -78,25 +78,14 @@ public class FauxPropertiesUpdater {
 	public void migrate() {
 		
 		
-		//if (!isAlreadyUpdated()) {
+		if (!isAlreadyUpdated()) {
+			log.info("We do read the PropertyConfig.n3 during the startup phase;");
 			if (locateFile()) {
 				if (loadFile()) {
 					writeSuccess();
 				}
 			}
-		//}
-		/*log.info("Basic PropertyConfig read is done");
-		if (!isAlreadyUpdated()) {
-			if (locateFileExt()) {
-				log.info("Located extented n3");
-				
-				if (loadFile()) {
-					writeSuccess();
-				}
-			}
-		}*/
-		log.info("Basic PropertyConfigExtension read is done as well");
-		
+		}
 	}
 
 	private boolean isAlreadyUpdated() {
