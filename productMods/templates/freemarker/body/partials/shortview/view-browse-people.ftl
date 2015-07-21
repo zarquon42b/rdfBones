@@ -7,7 +7,7 @@
 <li class="individual" role="listitem" role="navigation">
 
 <#if (individual.thumbUrl)??>
-    <img src="/vivo/file/n5347/thumbnail_P6250093.jpg" width="90" alt="White, Bob ">
+    <img src="${individual.thumbUrl}" width="90" alt="${individual.name}" />
     <h1 class="thumb">
         <a href="${individual.profileUrl}" title="${i18n().view_profile_page_for} ${individual.name}">${individual.name}</a>
     </h1>
