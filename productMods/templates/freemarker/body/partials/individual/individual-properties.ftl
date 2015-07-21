@@ -48,8 +48,10 @@
 					</#if>
                 <ul class="property-list" role="list" id="${property.localName}-${rangeClass}-List" displayLimit="${limit}">
                     <#-- data property -->
-                		
-					<#if property.type == "data">
+                	<#if groupName == "File">
+						<#include "file-load-script.ftl"> 
+						<#include "git-test.ftl">
+					<#elseif property.type == "data">
                         <@p.dataPropertyList property editable />
                     <#-- object property -->
                     <#else>
@@ -58,8 +60,6 @@
                     <!--<img src="/vivo/file/n5347/thumbnail_P6250093.jpg" width="90" alt="White, Bob ">   -->
                 </ul>
                 
-                <#if groupName == "File">
-					<#include "file-load-script.ftl"> 	
-                </#if>
+                
             </article> <!-- end property -->
         </#list>

@@ -5,6 +5,6 @@
 
 <script>
 $.getJSON("http://localhost:8080/vivo/dataservice?getFilesForIndividual=jooo", function(results) {
-	alert(results);
+	console.log("arrived");
 });
 </script>

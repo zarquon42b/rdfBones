@@ -4,7 +4,8 @@ deploy.properties
 vivo3Tier2/config
 vivo3Tier2/upgrade
 vivo3Tier2/solr
-vivo3Tier3/uploads
+vivo3Tier2/uploads
+vivo3Tier2/rdf
 vivo3Tier2/tdbModels
 
 #Build dir
