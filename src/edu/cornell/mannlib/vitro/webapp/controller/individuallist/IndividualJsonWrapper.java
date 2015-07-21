@@ -36,7 +36,6 @@ public class IndividualJsonWrapper {
 		jo.put("label", ind.getRdfsLabel());
 		jo.put("name", ind.getName());
 		jo.put("thumbUrl", ind.getThumbUrl());
-		log.info("thumbUrl" + jo.get("thumbUrl"));
 		jo.put("imageUrl", ind.getImageUrl());
 		jo.put("profileUrl", UrlBuilder.getIndividualProfileUrl(ind, vreq));
 		jo.put("mostSpecificTypes", getMostSpecificTypes(ind, fullWdf));
