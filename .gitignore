@@ -1,10 +1,11 @@
 #Config
 deploy.properties
-build.properties
-runtime.properties
 
-#Data directory
-./vivo3tier/*
+vivo3Tier2/config
+vivo3Tier2/solr
+vivo3Tier2/tdbModel
+vivo3Tier2/upgrade
+vivo3Tier2/uploads
 
 #Build dir
 .build/
