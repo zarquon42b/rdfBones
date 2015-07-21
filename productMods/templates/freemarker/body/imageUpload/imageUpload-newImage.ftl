@@ -17,7 +17,7 @@ ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/css/uploadImages.cs
             <p>${errorMessage}</p>
         </section>
     </#if>
-          
+   <div>FtlTest</div>     
     <form id="photoUploadForm" action="${formAction}" enctype="multipart/form-data" method="post" role="form">
         <label>${i18n.upload_photo} <span>${i18n.photo_types}</span></label>
         
