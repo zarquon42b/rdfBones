@@ -50,7 +50,6 @@
                     <#-- data property -->
                 	<#if groupName == "File">
 						<#include "file-load-script.ftl"> 
-						<#include "git-test.ftl">
 					<#elseif property.type == "data">
                         <@p.dataPropertyList property editable />
                     <#-- object property -->

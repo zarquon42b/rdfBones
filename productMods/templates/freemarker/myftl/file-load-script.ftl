@@ -30,7 +30,15 @@ var browseByVClass = {
         $.getJSON("http://localhost:8080/vivo/dataservice?getFilesForIndividual=jooo", function(results) {
         	
         	console.log(JSON.stringify(results));
-        	browseByVClass.Files.append(results.shortViewHtml);
+        	
+        	var imageHTML = "";
+        	
+        	$.each(results.images, function(i, data) {
+
+                    imageHTML += data.shortViewHtml;
+                })
+                
+                browseByVClass.Files.append(imageHTML);
            
         });
     }   

@@ -40,10 +40,51 @@ public class GetImagesOfIndividual extends GetSearchIndividualsByVClasses {
 	protected JSONObject process() throws Exception {
 		
 		
-		JSONObject rObj = new JSONObject();
 		
-		rObj.put("shortViewHtml"," <img src=\"/vivo/file/n1363/thumbnail_P6250110.jpg\" width=\"90\" alt=\"Konkoly, David \"> <img src=\"/vivo/file/n6730/thumbnail_P6270160.jpg\" width=\"90\" alt=\"White, Bob \">");
+		//rObj.put("shortViewHtml"," <img src=\"/vivo/file/n1363/thumbnail_P6250110.jpg\" width=\"90\" alt=\"Konkoly, David \"> <img src=\"/vivo/file/n6730/thumbnail_P6270160.jpg\" width=\"90\" alt=\"White, Bob \">");
+		
+		
+		JSONArray input = new JSONArray();
+		
+		JSONObject a = new JSONObject();
+		a.put("Url", "/vivo/file/n1363/thumbnail_P6250110.jpg");
+		input.put(a);
+		
+		JSONObject b = new JSONObject();
+		b.put("Url", "/vivo/file/n6730/thumbnail_P6270160.jpg");
+		input.put(b);
+		
+		
+		JSONObject rObj = new JSONObject();
 
+		addShortViewRenderings(input, rObj);
+		
 		return rObj;
 	}
+	
+	private void addShortViewRenderings(JSONArray input, JSONObject toSet) throws JSONException {
+		
+		
+		JSONArray buffer = new JSONArray();
+
+		for (int i = 0; i < input.length(); i++) {
+			
+			JSONObject a = new JSONObject();
+			a.put("shortViewHtml", renderShortView(input.getJSONObject(i).getString("Url")));
+			buffer.put(a);
+		}
+		toSet.put("images", buffer);
+	}
+	
+	
+	private String renderShortView(String urlString) {
+
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+
+		modelMap.put("Url", urlString);
+		ShortViewService svs = ShortViewServiceSetup.getService(ctx);
+		
+		return svs.myRenderShortView("git-test.ftl", modelMap, vreq);
+	}
+	
 }
