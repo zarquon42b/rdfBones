@@ -76,7 +76,7 @@ public class JsonServlet extends VitroHttpServlet {
         } else if( vreq.getParameter("getAllVClasses") != null ){
             new GetAllVClasses(vreq).process(resp);
         } else if( vreq.getParameter("getFilesForIndividual") != null){
-        	log.info("AJAX request arrived");
+        	new GetImagesOfIndividual(vreq).process(resp);
         }
     }
     

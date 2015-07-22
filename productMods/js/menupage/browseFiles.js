@@ -1,14 +1,3 @@
-<#-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
-
-<#-- Template for property listing on individual profile page -->
-
-
-<script>
-/*
-$.getJSON("http://localhost:8080/vivo/dataservice?getFilesForIndividual=jooo", function(results) {
-	console.log("arrived");
-});
-*/
 var browseByVClass = {
     // Initial page setup
     onLoad: function() {
@@ -27,10 +16,10 @@ var browseByVClass = {
    
         console.log("getIndividuals - getJSON");
     	
-        $.getJSON("http://localhost:8080/vivo/dataservice?getFilesForIndividual=jooo", function(results) {
+        $.getJSON(url, function(results) {
         	
         	console.log(JSON.stringify(results));
-        	browseByVClass.Files.append(results.shortViewHtml);
+        	browseByVClass.Files.append(individualList);
            
         });
     }   
@@ -39,6 +28,3 @@ var browseByVClass = {
 $(document).ready(function() {
     browseByVClass.onLoad();
 });
-
-
-</script>
