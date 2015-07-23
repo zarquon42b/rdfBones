@@ -58,7 +58,7 @@ public class ImageUploadFormGenerator implements EditConfigurationGenerator {
 	private String predicateUri = null;
 	private String objectUri = null;	
 		
-	private String objectPropertyTemplate = "imageUpload-newImage.ftl";
+	private String objectPropertyTemplate = "imageUpload-imagesToIndividual.ftl";
 	private String acObjectPropertyTemplate = "autoCompleteObjectPropForm.ftl";		
 	
 	protected boolean doAutoComplete = false;
