@@ -307,6 +307,32 @@ public class ImageUploadController extends FreemarkerHttpServlet {
 		}
 	}
 	
+	private ResponseValues doNewIndividualUploadImage(VitroRequest vreq, Individual entity) {
+		ImageUploadHelper helper = new ImageUploadHelper(fileStorage,
+				vreq.getUnfilteredWebappDaoFactory(), getServletContext());
+
+		try {
+			// Did they provide a file to upload? If not, show an error.
+			
+			FileItem fileItem = helper.validateImageFromRequest(vreq);
+
+			// Put it in the file system, and store a reference in the session.
+			FileInfo imageInfo = helper.storeNewImage(fileItem, vreq);
+
+			// How big is the new image? If not big enough, show an error.
+			Dimensions size = helper.getNewImageSize(imageInfo);
+
+			
+			helper.storeImageToIndividual(entity, imageInfo);
+			
+			// Go to the cropping page.
+			return showUploadedImages(vreq, entity,
+					fileInfo.getBytestreamAliasUrl(), size);
+		} catch (UserMistakeException e) {
+			return showErrorMessage(vreq, entity, e.formatMessage(vreq));
+		}
+	}
+	
 	
 	private TemplateResponseValues showUploadedImages(VitroRequest vreq,
 			Individual entity, String imageUrl, Dimensions dimensions) {
@@ -350,17 +376,19 @@ public class ImageUploadController extends FreemarkerHttpServlet {
 		try {
 			CropRectangle crop = validateCropCoordinates(vreq);
 			FileInfo newImage = helper.getNewImageInfo(vreq);
+			log.info("newImage : " + newImage);
 			FileInfo thumbnail = helper.generateThumbnail(crop, newImage);
-
+			
 			helper.removeExistingImage(entity);
 			helper.storeImageFiles(entity, newImage, thumbnail);
-
+				
 			return showExitPage(vreq, entity);
 		} catch (UserMistakeException e) {
 			return showErrorMessage(vreq, entity, e.formatMessage(vreq));
 		}
 	}
 
+	
 	/**
 	 * Delete the main image and the thumbnail, and go back to the referring
 	 * page.
